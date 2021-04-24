@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AdminPanel from './AdminPanel';
+import StoreFront from './Storefront';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      
-    </div>
+    <Router>
+      <div className="App">
+        <h1>Welcome</h1>
+        <ul>
+          <li><Link to="/">Go to Home</Link></li>
+          <li><Link to="/admin">Go to admin panel</Link></li>
+          <li><Link to="/storefront">Go to storefront</Link></li>
+        </ul>
+        <Switch>
+          <Route exact path="/">At home</Route>
+          <Route path="/admin">
+            <AdminPanel></AdminPanel>
+          </Route>
+          <Route path="/storefront">
+            <StoreFront></StoreFront>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
