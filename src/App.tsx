@@ -1,5 +1,8 @@
 import React from 'react';
-import './App.css';
+// import './App.css';
+
+import { connect } from 'react-redux';
+
 import AdminPanel from './AdminPanel';
 import StoreFront from './Storefront';
 
@@ -10,7 +13,7 @@ import {
   Link,
 } from 'react-router-dom';
 
-function App() {
+function App({ appState, inc, delItemAdmin, addItemAdmin }) {
   return (
     <Router>
       <div className="App">
@@ -23,7 +26,11 @@ function App() {
         <Switch>
           <Route exact path="/">At home</Route>
           <Route path="/admin">
-            <AdminPanel></AdminPanel>
+            <AdminPanel
+             storeItems={appState.storeItems}
+             addItem={addItemAdmin}
+             deleteItem={delItemAdmin}
+            ></AdminPanel>
           </Route>
           <Route path="/storefront">
             <StoreFront></StoreFront>
@@ -34,4 +41,14 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  appState: state
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  inc: () => dispatch({type: 'INC'}),
+  delItemAdmin: (id) => dispatch({type: 'ADMIN/DELETE_ITEM', itemId: id}),
+  addItemAdmin: (newItem) => dispatch({type: 'ADMIN/ADD_ITEM', newItem}),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
