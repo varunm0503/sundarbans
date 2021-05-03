@@ -13,7 +13,7 @@ import {
   Link,
 } from 'react-router-dom';
 
-function App({ appState, delItemAdmin, addItemAdmin, addItemCart }) {
+function App({ appState, delItemAdmin, addItemAdmin, addItemCart, removeItemCart }) {
   return (
     <Router>
       <div className="App">
@@ -36,7 +36,8 @@ function App({ appState, delItemAdmin, addItemAdmin, addItemCart }) {
             <StoreFront
              storeItems={appState.storeItems}             
              cart={appState.cart}
-             addToCart={addItemCart}></StoreFront>
+             addToCart={addItemCart}
+             removeFromCart={removeItemCart}></StoreFront>
           </Route>
         </Switch>
       </div>
@@ -52,6 +53,7 @@ const mapDispatchToProps = (dispatch) => ({
   delItemAdmin: (id) => dispatch({type: 'ADMIN/DELETE_ITEM', itemId: id}),
   addItemAdmin: (newItem) => dispatch({type: 'ADMIN/ADD_ITEM', newItem}),
   addItemCart: (newItem) => dispatch({type: 'CART/ADD_ITEM', newItem}),
+  removeItemCart: (id) => dispatch({type: 'CART/REMOVE_ITEM', itemId: id}),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

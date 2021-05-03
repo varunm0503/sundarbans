@@ -1,10 +1,13 @@
 import React from 'react';
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems, removeFromCart }) => {
     const renderCartItems = (): JSX.Element[] => {
         return cartItems.map(cartItem => (
-            <div>
-                <h4>{cartItem.name}</h4>
+            <div key={'cart'+cartItem.id}>
+                <span>
+                    <h4>{cartItem.name}</h4>
+                    <button onClick={() => removeFromCart(cartItem.id)}>remove</button>
+                </span>
                 <p>{cartItem.make}</p>
                 <p>{cartItem.quantity} x Rs. {cartItem.price}</p>
             </div>

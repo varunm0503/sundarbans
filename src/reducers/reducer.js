@@ -28,7 +28,7 @@ const appReducer = (state = initialStore, action) => {
         case 'ADMIN/ADD_ITEM':
             return {
                 ...state,
-                storeItems: state.storeItems.concat({   
+                storeItems: state.storeItems.concat({
                     ...action.newItem,
                     'id': (state.storeItems.length+1).toString(),
                 })
@@ -36,7 +36,14 @@ const appReducer = (state = initialStore, action) => {
         case 'CART/ADD_ITEM':
             return {
                 ...state,
-                cart: state.cart.concat(action.newItem)
+                cart: (state.cart.filter(item => item.id === action.newItem?.id).length)
+                 ? state.cart.map(item => item.id === action.newItem.id ? {...item, 'quantity': item.quantity + action.newItem.quantity} : item)
+                 : state.cart.concat(action.newItem)
+            }
+        case 'CART/REMOVE_ITEM':
+            return {
+                ...state,
+                cart: state.cart.filter(item => item.id !== action.itemId)
             }
         default:
             return state;
