@@ -13,7 +13,7 @@ import {
   Link,
 } from 'react-router-dom';
 
-function App({ appState, inc, delItemAdmin, addItemAdmin }) {
+function App({ appState, delItemAdmin, addItemAdmin }) {
   return (
     <Router>
       <div className="App">
@@ -33,7 +33,9 @@ function App({ appState, inc, delItemAdmin, addItemAdmin }) {
             ></AdminPanel>
           </Route>
           <Route path="/storefront">
-            <StoreFront></StoreFront>
+            <StoreFront
+             storeItems={appState.storeItems}
+             cart={appState.cart}></StoreFront>
           </Route>
         </Switch>
       </div>
@@ -46,7 +48,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  inc: () => dispatch({type: 'INC'}),
   delItemAdmin: (id) => dispatch({type: 'ADMIN/DELETE_ITEM', itemId: id}),
   addItemAdmin: (newItem) => dispatch({type: 'ADMIN/ADD_ITEM', newItem}),
 })

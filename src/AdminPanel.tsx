@@ -8,25 +8,28 @@ const AdminPanel = ({ storeItems, addItem, deleteItem }) => {
     const [newDescription, setNewDescription] = useState('');
     const handleNewItem = (e) => {
         e.preventDefault();
-        console.log(newMake);
-        console.log(newName);
-        console.log(newPrice);
-        console.log(newDescription);
         const newItem = {
             'name': newName,
             'make': newMake,
-            'price': Number.parseInt(newPrice),
+            'price': (Number.parseFloat(newPrice)) ? Number.parseFloat(newPrice) : 10,
             'description': newDescription,
+            'id': '42',
         };
         addItem(newItem);
     }
     const renderStoreItems = (): JSX.Element[] => {
+        console.log(`Type: ${typeof storeItems}`)
+        console.log(storeItems)
         return storeItems.map((storeItem: IProduct, i: number) => (
             <>
                 <li 
-                key={i}>
+                 key={i}>
                 {storeItem.name}
-                <button onClick={() => deleteItem(storeItem.id)}>Delete</button>
+                    <button
+                     onClick={() => deleteItem(storeItem.id)}
+                     key={'delBtn' + i}>
+                        Delete
+                    </button>
                 </li>
             </>
         ))

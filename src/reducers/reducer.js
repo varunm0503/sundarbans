@@ -11,13 +11,14 @@ const initialStore = {
         {id: '7', name: 'Prod B2', make: 'Yellow', price: 1000},
         {id: '8', name: 'YAPB', make: 'Another B', price: 1.101, description: 'Yet another product A'},
         {id: '9', name: 'Prod xz', make: 'The second unknown', price: 204, description: ''},
-        {id: '10', name: 'Prod yy', make: 'Orange', price: 1000.42, description: 'Buy me!'},
     ],
 };
 
 const appReducer = (state = initialStore, action) => {
     switch(action.type) {
         case 'ADMIN/DELETE_ITEM':
+            const newStoreItems = state.storeItems.filter(item => item.id !== action.itemId);
+            console.log(newStoreItems)
             return {
                 ...state,
                 storeItems: state.storeItems.filter(item => item.id !== action.itemId)
@@ -25,9 +26,9 @@ const appReducer = (state = initialStore, action) => {
         case 'ADMIN/ADD_ITEM':
             return {
                 ...state,
-                storeItems: state.storeItems.push({   
+                storeItems: state.storeItems.concat({   
                     ...action.newItem,
-                    'id': (state.storeItems.length+2).toString(),
+                    'id': (state.storeItems.length+1).toString(),
                 })
             }
         default:
