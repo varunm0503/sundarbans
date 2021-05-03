@@ -1,6 +1,8 @@
 // eslint-disable-next-line
 const initialStore = {
-    cart: [],
+    cart: [
+        {id: '3', name: 'YAPA', make: 'Another', price: 90.101, description: 'Yet another product A', quantity: 2},
+    ],
     storeItems: [
         {id: '1', name: 'Prod A', make: 'The best one', price: 42, description: 'The best product A in the market'},
         {id: '2', name: 'Prod B', make: 'Blue', price: 100},
@@ -30,6 +32,11 @@ const appReducer = (state = initialStore, action) => {
                     ...action.newItem,
                     'id': (state.storeItems.length+1).toString(),
                 })
+            }
+        case 'CART/ADD_ITEM':
+            return {
+                ...state,
+                cart: state.cart.concat(action.newItem)
             }
         default:
             return state;

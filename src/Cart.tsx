@@ -3,11 +3,11 @@ import React from 'react';
 const Cart = ({ cartItems }) => {
     const renderCartItems = (): JSX.Element[] => {
         return cartItems.map(cartItem => (
-            <>
+            <div>
                 <h4>{cartItem.name}</h4>
                 <p>{cartItem.make}</p>
                 <p>{cartItem.quantity} x Rs. {cartItem.price}</p>
-            </>
+            </div>
         ))
     }
     return (

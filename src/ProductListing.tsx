@@ -2,7 +2,7 @@ import React from 'react';
 import Product from './Product';
 import IProduct from './types';
 
-const ProductListing = ({ prodList }) => {
+const ProductListing = ({ prodList, addToCart }) => {
     const getProdList = (): JSX.Element[] => {
         return prodList.map((prod: IProduct, i: number) => (
             <div key={i}>
@@ -12,9 +12,8 @@ const ProductListing = ({ prodList }) => {
                 name={prod.name}
                 make={prod.make}
                 price={prod.price}
-                description={prod.description}>
-                </Product>
-                <button key={'cartBtn' + i}>Add to Cart</button>
+                description={prod.description}
+                addToCartFn={addToCart} />
                 {prodList.length === i+1
                  ? null
                  : <hr key={'line' + i} />}

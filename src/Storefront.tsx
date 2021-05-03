@@ -4,7 +4,7 @@ import { useInput } from './hooks/useInput';
 import ProductListing from './ProductListing';
 import Search from './Search';
 
-const StoreFront = ({ storeItems, cart }) => {
+const StoreFront = ({ storeItems, cart, addToCart }) => {
     const {value, onChange} = useInput('');
     const [searchTerm, setSearchTerm] = useState('');
     return (
@@ -20,7 +20,8 @@ const StoreFront = ({ storeItems, cart }) => {
             <p>Searched for {searchTerm}</p>
             <div style={{display: 'flex',}}>
                 <ProductListing
-                 prodList={storeItems}></ProductListing>
+                 prodList={storeItems}
+                 addToCart={addToCart}></ProductListing>
                 <Cart
                  cartItems={cart}></Cart>    
             </div>
