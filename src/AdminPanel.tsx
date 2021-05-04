@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import IProduct from './types';
+import {IProduct} from './types';
 
 const AdminPanel = ({ storeItems, addItem, deleteItem }) => {
     const [newName, setNewName] = useState('');
     const [newMake, setNewMake] = useState('');
     const [newPrice, setNewPrice] = useState('');
     const [newDescription, setNewDescription] = useState('');
-    const handleNewItem = (e) => {
+    const handleNewItem = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         const newItem = {
             'name': newName,

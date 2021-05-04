@@ -1,9 +1,16 @@
-interface IProduct {
-    id: String,
-    name: String,
-    make: String,
-    price: Number,
-    description?: String
+export interface IProduct {
+    id: string,
+    name: string,
+    make: string,
+    price: number,
+    description?: string
 }
 
-export default IProduct
+export interface ICartItem {
+    id: string,
+    name: string,
+    make: string,
+    price: number,
+    description?: string,
+    quantity: number
+}

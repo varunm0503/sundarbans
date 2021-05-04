@@ -1,7 +1,18 @@
 import React from 'react';
+import { usePreviousState } from './hooks/usePreviousState';
+import { ICartItem } from './types';
 
 const Cart = ({ cartItems, removeFromCart }) => {
-    const renderCartItems = (): JSX.Element[] => {
+    const prevCart = usePreviousState(cartItems) || [];
+    const renderChanges = (): JSX.Element => {
+        return (
+            <div>
+                <h5>Previous</h5>
+
+            </div>
+        )
+    }
+    const renderCartItems = (cartItems: Array<ICartItem>): JSX.Element[] => {
         return cartItems.map(cartItem => (
             <div key={'cart'+cartItem.id}>
                 <span>
@@ -13,6 +24,9 @@ const Cart = ({ cartItems, removeFromCart }) => {
             </div>
         ))
     }
+    console.log('Prev cart: ')
+    console.log(prevCart)
+    console.log(`cartItems is ${typeof cartItems}, prevCart is ${typeof prevCart}`)
     return (
         <>
             <div
@@ -20,7 +34,9 @@ const Cart = ({ cartItems, removeFromCart }) => {
                     flexDirection: 'column',
                     flexGrow: 2}}>
                 <h3>Cart</h3>
-                {renderCartItems()}
+                {renderCartItems(cartItems)}
+                {renderCartItems(prevCart)}
+                
             </div>
         </>
     )

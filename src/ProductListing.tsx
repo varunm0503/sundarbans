@@ -1,6 +1,6 @@
 import React from 'react';
 import Product from './Product';
-import IProduct from './types';
+import {IProduct} from './types';
 
 const ProductListing = ({ prodList, addToCart }) => {
     const getProdList = (): JSX.Element[] => {

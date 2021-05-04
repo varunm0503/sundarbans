@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import AdminPanel from './AdminPanel';
 import StoreFront from './Storefront';
+import Experimental from './Experimental';
 
 import {
   BrowserRouter as Router,
@@ -38,6 +39,9 @@ function App({ appState, delItemAdmin, addItemAdmin, addItemCart, removeItemCart
              cart={appState.cart}
              addToCart={addItemCart}
              removeFromCart={removeItemCart}></StoreFront>
+          </Route>
+          <Route path="/experimental">
+            <Experimental></Experimental>
           </Route>
         </Switch>
       </div>
