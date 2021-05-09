@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {IProduct} from './types';
+import { IProduct } from './types';
 
 const AdminPanel = ({ storeItems, addItem, deleteItem }) => {
     const [newName, setNewName] = useState('');

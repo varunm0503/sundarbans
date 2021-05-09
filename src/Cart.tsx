@@ -4,14 +4,6 @@ import { ICartItem } from './types';
 
 const Cart = ({ cartItems, removeFromCart }) => {
     const prevCart = usePreviousState(cartItems) || [];
-    const renderChanges = (): JSX.Element => {
-        return (
-            <div>
-                <h5>Previous</h5>
-
-            </div>
-        )
-    }
     const renderCartItems = (cartItems: Array<ICartItem>): JSX.Element[] => {
         return cartItems.map(cartItem => (
             <div key={'cart'+cartItem.id}>
@@ -35,6 +27,8 @@ const Cart = ({ cartItems, removeFromCart }) => {
                     flexGrow: 2}}>
                 <h3>Cart</h3>
                 {renderCartItems(cartItems)}
+                <hr/>
+                <h4>Previous state: </h4>
                 {renderCartItems(prevCart)}
                 
             </div>
