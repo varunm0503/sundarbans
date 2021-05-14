@@ -27,6 +27,7 @@ const ProductListing = ({ prodList, addToCart }) => {
                     flexDirection: 'column',
                     flexGrow: 3,}}>
                 <h2>Viewing {prodList.length} products</h2>
+                
                 {getProdList()}
             </div>
             
