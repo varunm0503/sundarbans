@@ -50,10 +50,13 @@ function App({ appState, delItemAdmin, addItemAdmin, addItemCart, removeItemCart
 }
 
 const mapStateToProps = (state) => ({
+  //review: can make separate selectors for storeItems, cart and move to a selector.js file
   appState: state
 });
 
+//review: we can move the delete, add, remove actions to an actions.ts file
 const mapDispatchToProps = (dispatch) => ({
+  //review: we can keep name as deleteItem, addItem, addItemFromCard, removeItemFromCart. 
   delItemAdmin: (id) => dispatch({type: 'ADMIN/DELETE_ITEM', itemId: id}),
   addItemAdmin: (newItem) => dispatch({type: 'ADMIN/ADD_ITEM', newItem}),
   addItemCart: (newItem) => dispatch({type: 'CART/ADD_ITEM', newItem}),
